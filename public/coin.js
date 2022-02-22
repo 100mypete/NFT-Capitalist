@@ -10,9 +10,8 @@ export default class Coin {
   let targetPrice;
 
 
-  constructor(name, price, apr, rateMin, rateMax) {
+  constructor(name, apr, rateMin, rateMax) {
     this.name = name;
-    this.price = price;
     this.rateMin = rateMin;
     this.rateMax = rateMax;
     this.apr = apr;
