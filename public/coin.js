@@ -6,21 +6,21 @@ class Coin {
     this.rateMax = rateMax;
     this.apr = apr;
     this.balance = 0;
-    this.numCoins = 0;
+    this.numCoins = 0.0;
     this.price = 1000;
   }
 
   updatePrice() {
     //price should be updated every second in the player class
     let rate = (Math.random() * 2.5) - 0.5;
-    this.price += ((this.targetPrice - price) / 15) * rate;
+    this.price += ((this.targetPrice - this.price) / 15) * rate;
     this.balance = this.price * this.numCoins;
   }
 
   updateAPR() {
     //there should be a loop in the player class that runs this ever second
-    this.balance += (this.balance*(apr/21900));
-    updateNumCoins();
+    this.balance += (this.balance*(this.apr/21900));
+    this.updateNumCoins();
   }
 
   newTargetPrice() {
