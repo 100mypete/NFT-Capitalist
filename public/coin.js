@@ -1,38 +1,36 @@
-export default class Coin {
-
-  let name;
-  let balance = 0;
-  let numCoins = 0;
-  let price = 1000;
-  let rateMin;
-  let rateMax;
-  let apr;
-  let targetPrice;
-
+class Coin {
 
   constructor(name, apr, rateMin, rateMax) {
     this.name = name;
     this.rateMin = rateMin;
     this.rateMax = rateMax;
     this.apr = apr;
+    this.balance = 0;
+    this.numCoins = 0;
+    this.price = 1000;
   }
 
-  function updatePrice() {
+  updatePrice() {
     //price should be updated every second in the player class
     let rate = (Math.random() * 2.5) - 0.5;
-    price += ((targetPrice - price) / 15) * rate;
-    balance = price * numCoins;
+    this.price += ((this.targetPrice - price) / 15) * rate;
+    this.balance = this.price * this.numCoins;
   }
 
-  function updateAPR() {
+  updateAPR() {
     //there should be a loop in the player class that runs this ever second
-    balance += (balance*(apr/21900));
+    this.balance += (this.balance*(apr/21900));
+    updateNumCoins();
   }
 
-  function newTargetPrice() {
+  newTargetPrice() {
     //new target price should be set every 15 seconds
-    let rate = Math.random() * (rateMax - rateMin) + rateMin;
-    targetPrice = price * rate;
+    let rate = Math.random() * (this.rateMax - this.rateMin) + this.rateMin;
+    this.targetPrice = this.price * rate;
+  }
+
+  updateNumCoins() {
+    this.numCoins = this.balance / this.price;
   }
 
 }
