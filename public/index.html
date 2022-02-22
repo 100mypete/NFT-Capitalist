@@ -1,10 +1,207 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NFT Capitalist</title>
+<head>
+
+<link rel="stylesheet" href="main.css">
+
+
   </head>
+
   <body>
-  </body>
+
+
+  <div style = "text-align:center;">
+    <canvas id="gameCanvas" width="1440px" height="1024px" style="border:2px solid #000000; class="box""></canvas>
+</div>
+</body>
+
+<script>
+class hitBoxes{
+  constructor(x,y,w,h,id,name){
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.id = id;
+    this.name = name;
+  }
+  isWithin(mouseX, mouseY)  {
+    if(mouseX > this.x && this.x+this.w  > mouseX && mouseY > this.y && mouseY <this.y+this.h)  {
+      return this.id } else
+      {return 0}
+  }
+}
+
+const buttons = [
+  new hitBoxes(80,120,80,392,1,"home"),
+  new hitBoxes(80,512,80,392,2,"market"),
+  new hitBoxes(265,646,93.33,40,3,"investAlpha1000"),
+  new hitBoxes(374,646,93.33,40,4,"investAlpha10_000"),
+  new hitBoxes(481,646,93.33,40,5,"investAlpha100_000"),
+  new hitBoxes(665,646,93.33,40,6,"investBeta1000"),
+  new hitBoxes(774,646,93.33,40,7,"investBeta10_000"),
+  new hitBoxes(881,646,93.33,40,8,"investBeta100_000"),
+  new hitBoxes(1065,646,93.33,40,9,"investSigma1000"),
+  new hitBoxes(1174,646,93.33,40,10,"investSigma10_000"),
+  new hitBoxes(1281,646,93.33,40,11,"investSigma100_000"),
+
+];
+var alpha = new Image(400,300);
+alpha.src = './images/alpha.png';
+var beta = new Image(400,300);
+beta.src = './images/beta.png';
+var sigma = new Image(400,300);
+sigma.src = './images/sigma.png';
+
+
+
+function getMousePos(canvas, evt){
+  var rect = canvas.getBoundingClientRect();
+  return{x: evt.clientX-rect.left, y: evt.clientY-rect.top};
+}
+
+gameCanvas.addEventListener('click', function(evt){
+  var canvas = document.querySelector("canvas");
+  var ctx = canvas.getContext("2d");
+
+  var mousePos = getMousePos(gameCanvas, evt);
+  for(let i = 0; i<buttons.length; i++)
+  {
+    switch(buttons[i].isWithin(mousePos.x, mousePos.y))
+    {
+      case 1: drawHome();
+      console.log(buttons[i].name + " was clicked");
+      break;
+      case 2: drawMarketPlace();
+       console.log(buttons[i].name + " was clicked");
+      break;
+      case 3: console.log(buttons[i].name + " was clicked");
+      break;
+      case 4: console.log(buttons[i].name + " was clicked");
+      break;
+      case 5: console.log(buttons[i].name + " was clicked");
+      break;
+      case 6: console.log(buttons[i].name + " was clicked");
+      break;
+      case 7: console.log(buttons[i].name + " was clicked");
+      break;
+      case 8: console.log(buttons[i].name + " was clicked");
+      break;
+      case 9: console.log(buttons[i].name + " was clicked");
+      break;
+      case 10: console.log(buttons[i].name + " was clicked");
+      break;
+      case 10: console.log(buttons[i].name + " was clicked");
+      break;
+      case 11: console.log(buttons[i].name + " was clicked");
+      break;
+    }
+
+  }
+}, false);
+
+
+function copyImageToCanvas(e,x,y,w,h) {
+   var canvas = document.querySelector("canvas");
+   var ctx = canvas.getContext("2d");
+   ctx.drawImage(e,x,y,w,h);
+}
+
+
+function drawCoinTab(x,y,w,h,r)
+{
+  var canvas = document.getElementById('gameCanvas');
+  var ctx = canvas.getContext('2d');
+  corner(x,y,w,h,r,"white")
+
+  corner(x+25,y+540,314,139,20,"#F0F6FF")
+
+  corner(x+25,y+406,93.33, 40, 20,"#6AA5FF")
+  corner(x+134,y+406,93.33, 40, 20,"#6AA5FF")
+  corner(x+241,y+406,93.33, 40, 20,"#6AA5FF")
+
+  corner(x+25,y+470,93.33, 40, 20,"#6AA5FF")
+  corner(x+134,y+470,93.33, 40, 20,"#6AA5FF")
+  corner(x+241,y+470,93.33, 40, 20,"#6AA5FF")
+}
+
+function drawHome() {
+  var canvas = document.getElementById('gameCanvas');
+  var ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+  if (canvas.getContext) {
+    ctx.fillStyle='#F5F6F8';
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    corner(40, 80, 160, 864,20,"white");
+    corner(240, 80, 560, 120,20,"white");
+    corner(840, 80, 560, 120,20,"white");
+    corner(80,120,80,392,20,"#6AA5FF");
+    drawCoinTab(240, 240, 360, 704,20);
+    drawCoinTab(640, 240, 360, 704,20);
+    drawCoinTab(1040, 240, 360, 704,20);
+
+    ctx.font = "30px Arial";
+    ctx.fillText("Wallet", 691, 150);
+    ctx.fillText("Total Balance", 1190, 150);
+    setTimeout(() => {
+       copyImageToCanvas(alpha,240,220,400,300);
+       copyImageToCanvas(beta,740,270,160,160);
+       copyImageToCanvas(sigma,1040,220,400,300);
+    }, 200)
+
+
+  }
+}
+
+function corner(x,y,w,h,r,color)
+{
+  var canvas = document.getElementById('gameCanvas');
+  var ctx = canvas.getContext('2d');
+  ctx.strokeStyle = "white";
+  ctx.shadowColor = "grey";
+  ctx.shadowBlur = 0;
+  ctx.shadowOffsetX = 0;
+  ctx.shadowOffsetY = 0;
+  ctx.beginPath();
+  ctx.lineWidth = 2;
+  ctx.moveTo(x+20,y);
+  ctx.lineTo(x+w-r,y);
+  ctx.arc(x+w-r,y+r,r, 1.5*Math.PI,0*Math.PI);
+  ctx.lineTo(x+w,y+h-r);
+  ctx.arc(x+w-r,y+h-r,r, 0*Math.PI,.5*Math.PI);
+  ctx.lineTo(x+r,y+h);
+  ctx.arc(x+r,y+h-r,r, .5*Math.PI,1*Math.PI);
+  ctx.lineTo(x,y+r);
+  ctx.arc(x+r,y+r,r, 1*Math.PI,1.5*Math.PI);
+  ctx.stroke();
+  ctx.fillStyle = color;
+  ctx.fill()
+}
+
+
+function drawMarketPlace() {
+  var canvas = document.getElementById('gameCanvas');
+  var ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, gameCanvas.width, gameCanvas.height);
+  if (canvas.getContext) {
+
+    ctx.fillStyle = "#F5F6F8";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    corner(40, 80, 160, 864,20,"white");
+    corner(240, 80, 560, 120,20,"white");
+    corner(840, 80, 560, 120,20,"white");
+    corner(80,512,80,392,20,"#6AA5FF");
+    corner(242, 240, 1160, 330,20,"white");
+    corner(242, 614, 1160, 330,20,"white");
+    ctx.font = "30px Arial";
+    ctx.fillText("Wallet", 691, 150);
+    ctx.fillText("Total Balance", 1190, 150);
+
+  }
+}
+
+
+drawHome();
+
+</script>
 </html>
