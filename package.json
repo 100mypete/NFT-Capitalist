@@ -1,0 +1,22 @@
+{
+  "name": "nft-capitalist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/100mypete/NFT-Capitalist.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/100mypete/NFT-Capitalist/issues"
+  },
+  "homepage": "https://github.com/100mypete/NFT-Capitalist#readme",
+  "devDependencies": {
+    "eslint": "^8.9.0"
+  }
+}
