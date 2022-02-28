@@ -1,4 +1,4 @@
-export default class NFT {
+class NFT {
 
   constructor(imageSrc, price, APRPerk) {
     this.imageSrc = imageSrc;

@@ -1,5 +1,3 @@
-import NFT from "nft";
-
 class Marketplace {
 
   constructor() {
