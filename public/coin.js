@@ -1,5 +1,4 @@
 class Coin {
-
   constructor(name, apr, rateMin, rateMax) {
     this.name = name;
     this.rateMin = rateMin;
@@ -12,14 +11,14 @@ class Coin {
 
   updatePrice() {
     //price should be updated every second in the player class
-    let rate = (Math.random() * 2.5) - 0.5;
+    let rate = Math.random() * 2.5 - 0.5;
     this.price += ((this.targetPrice - price) / 15) * rate;
     this.balance = this.price * this.numCoins;
   }
 
   updateAPR() {
     //there should be a loop in the player class that runs this ever second
-    this.balance += (this.balance*(apr/21900));
+    this.balance += this.balance * (apr / 21900);
     updateNumCoins();
   }
 
@@ -32,5 +31,4 @@ class Coin {
   updateNumCoins() {
     this.numCoins = this.balance / this.price;
   }
-
 }
