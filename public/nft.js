@@ -1,4 +1,5 @@
 class NFT {
+
   constructor(imageSrc, price, APRPerk) {
     this.imageSrc = imageSrc;
     this.price = price;
