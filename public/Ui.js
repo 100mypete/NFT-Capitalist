@@ -193,6 +193,45 @@ class UI {
       ctx.font = "30px Arial";
       ctx.fillText("Wallet", 691, 150);
       ctx.fillText("Total Balance", 1190, 150);
+
+      ctx.font = "42px Arial";
+      ctx.fillStyle = "#000000";
+      ctx.fillText(this.testCoins[0].name, 366, 500);
+      ctx.fillText(this.testCoins[1].name, 777, 500);
+      ctx.fillText(this.testCoins[2].name, 1160, 500);
+
+      ctx.font = "16px Arial";
+      ctx.fillText("$" + this.testCoins[0].price, 395, 550);
+      ctx.fillText("$" + this.testCoins[1].price, 800, 550);
+      ctx.fillText("$" + this.testCoins[2].price, 1197, 550);
+      ctx.fillText("APY: " + this.testCoins[0].apr * 100 + "%", 387, 570);
+      ctx.fillText("APY: " + this.testCoins[1].apr * 100 + "%", 779, 570);
+      ctx.fillText("APY: " + this.testCoins[2].apr * 100 + "%", 1162, 570);
+
+      ctx.fillStyle = "#6AA5FF";
+      ctx.fillText(
+        "Owned: $" + this.testCoins[0].balance * this.testCoins[0].price,
+        380,
+        590
+      );
+      ctx.fillText(
+        "Owned: $" + this.testCoins[1].balance * this.testCoins[1].price,
+        785,
+        590
+      );
+      ctx.fillText(
+        "Owned: $" + this.testCoins[2].balance * this.testCoins[2].price,
+        1182,
+        590
+      );
+
+      ctx.fillText("Invest", 266, 640);
+      ctx.fillText("Invest", 667, 640);
+      ctx.fillText("Invest", 1067, 640);
+      ctx.fillText("Withdraw", 266, 705);
+      ctx.fillText("Withdraw", 667, 705);
+      ctx.fillText("Withdraw", 1067, 705);
+
       setTimeout(() => {
         this.copyImageToCanvas(this.alpha, 240, 220, 400, 300);
         this.copyImageToCanvas(this.beta, 740, 270, 160, 160);
@@ -253,6 +292,12 @@ class UI {
   }
   constructor() {
     this.canvas = document.getElementById("gameCanvas");
+    //coins
+    this.testCoins = [
+      new Coin("Alpha", 0, 0.5, 2),
+      new Coin("Beta", 10, 0.1, 3),
+      new Coin("Sigma", 10000, 0.02, 4),
+    ];
     //markketplace nfts
     this.testNFT = [
       new NFT("./images/1.jpg", 100, 3),
