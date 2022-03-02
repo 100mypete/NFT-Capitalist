@@ -10,6 +10,8 @@ class Marketplace {
   }
 
   removeNFT(index) {
+    let removed = this.NFTS[index];
     this.NFTs.splice(index, 1);
+    return removed;
   }
 }
