@@ -1,5 +1,4 @@
 class Coin {
-
   constructor(name, apr, rateMin, rateMax) {
     this.name = name;
     this.rateMin = rateMin;
@@ -32,5 +31,4 @@ class Coin {
   updateNumCoins() {
     this.numCoins = this.balance / this.price;
   }
-
 }

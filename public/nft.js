@@ -5,5 +5,4 @@ class NFT {
     this.price = price;
     this.APRPerk = APRPerk;
   }
-
 }
