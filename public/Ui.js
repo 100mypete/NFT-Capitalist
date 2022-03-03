@@ -119,7 +119,7 @@ class UI {
     if (this.testNFT.length > 1) {
       this.copyImageToCanvas(this.testNFT[this.page].image, 300, 370, 142, 142);
       this.corner(280, 350, 333, 182, 20, "#F0F6FF");
-      ctx.font = "normal 18px Arial";
+      ctx.font = "normal 18px Roboto";
       ctx.fillStyle = "lightgray";
       ctx.fillText("Price", 482, 393);
       ctx.fillText("Perks", 482, 451);
@@ -190,14 +190,136 @@ class UI {
       this.drawCoinTab(640, 240, 360, 704, 20);
       this.drawCoinTab(1040, 240, 360, 704, 20);
 
-      ctx.font = "30px Arial";
+      //balance
+      ctx.font = "30px Roboto";
       ctx.fillText("Wallet", 691, 150);
       ctx.fillText("Total Balance", 1190, 150);
+
+      //coin name
+      ctx.font = "42px Roboto";
+      ctx.fillStyle = "#000000";
+      ctx.fillText(this.testCoins[0].name, 366, 500);
+      ctx.fillText(this.testCoins[1].name, 773, 500);
+      ctx.fillText(this.testCoins[2].name, 1160, 500);
+
+      //coin price
+      ctx.font = "16px Roboto";
+      ctx.fillText("$" + this.testCoins[0].price, 395, 550);
+      ctx.fillText("$" + this.testCoins[1].price, 795, 550);
+      ctx.fillText("$" + this.testCoins[2].price, 1195, 550);
+
+      //coin apr
+      ctx.fillText("APR: " + this.testCoins[0].apr * 100 + "%", 387, 570);
+      ctx.fillText("APR: " + this.testCoins[1].apr * 100 + "%", 775, 570);
+      ctx.fillText("APR: " + this.testCoins[2].apr * 100 + "%", 1162, 570);
+
+      //coin owned
+      ctx.fillStyle = "#6AA5FF";
+      ctx.fillText(
+        "Owned: $" + this.testCoins[0].balance * this.testCoins[0].price,
+        370,
+        590
+      );
+      ctx.fillText(
+        "Owned: $" + this.testCoins[1].balance * this.testCoins[1].price,
+        770,
+        590
+      );
+      ctx.fillText(
+        "Owned: $" + this.testCoins[2].balance * this.testCoins[2].price,
+        1170,
+        590
+      );
+
+      //invest
+      ctx.fillText("Invest", 266, 640);
+      ctx.fillText("Invest", 667, 640);
+      ctx.fillText("Invest", 1067, 640);
+
+      //withdraw
+      ctx.fillText("Withdraw", 266, 705);
+      ctx.fillText("Withdraw", 667, 705);
+      ctx.fillText("Withdraw", 1067, 705);
+
+      //invest alpha
+      ctx.fillStyle = "#FFFFFF";
+      ctx.font = "16px Roboto";
+      ctx.fillText("$1,000", 287, 671);
+      ctx.fillText("$10,000", 391, 671);
+      ctx.fillText("$100,000", 495, 671);
+
+      //withdraw alpha
+      ctx.fillText("$1,000", 287, 735);
+      ctx.fillText("$10,000", 391, 735);
+      ctx.fillText("$100,000", 495, 735);
+
+      //invest beta
+      ctx.fillText("$1,000", 687, 671);
+      ctx.fillText("$10,000", 791, 671);
+      ctx.fillText("$100,000", 895, 671);
+
+      //withdraw beta
+      ctx.fillText("$1,000", 687, 735);
+      ctx.fillText("$10,000", 791, 735);
+      ctx.fillText("$100,000", 895, 735);
+
+      //invest sigma
+      ctx.fillText("$1,000", 1087, 671);
+      ctx.fillText("$10,000", 1191, 671);
+      ctx.fillText("$100,000", 1295, 671);
+
+      //withdraw sigma
+      ctx.fillText("$1,000", 1087, 735);
+      ctx.fillText("$10,000", 1191, 735);
+      ctx.fillText("$100,000", 1295, 735);
+
       setTimeout(() => {
         this.copyImageToCanvas(this.alpha, 240, 220, 400, 300);
         this.copyImageToCanvas(this.beta, 740, 270, 160, 160);
         this.copyImageToCanvas(this.sigma, 1040, 220, 400, 300);
       }, 200);
+
+      //alpha rewards
+      if (this.testCoins[0].rewards == 0) {
+        ctx.fillStyle = "#C4C4C4";
+        ctx.font = "16px Roboto";
+        ctx.fillText("No rewards", 381, 855);
+      } else {
+        ctx.fillStyle = "#C4C4C4";
+        ctx.font = "16px Roboto";
+        ctx.fillText("Claim", 400, 890);
+        ctx.fillStyle = "#000000";
+        ctx.font = "300 36px Roboto";
+        ctx.fillText("$" + this.testCoins[0].rewards, 378, 850);
+      }
+
+      //beta rewards
+      if (this.testCoins[1].rewards == 0) {
+        ctx.fillStyle = "#C4C4C4";
+        ctx.font = "16px Roboto";
+        ctx.fillText("No rewards", 781, 855);
+      } else {
+        ctx.fillStyle = "#C4C4C4";
+        ctx.font = "16px Roboto";
+        ctx.fillText("Claim", 800, 890);
+        ctx.fillStyle = "#000000";
+        ctx.font = "300 36px Roboto";
+        ctx.fillText("$" + this.testCoins[1].rewards, 778, 850);
+      }
+
+      //sigma rewards
+      if (this.testCoins[2].rewards == 0) {
+        ctx.fillStyle = "#C4C4C4";
+        ctx.font = "16px Roboto";
+        ctx.fillText("No rewards", 1181, 855);
+      } else {
+        ctx.fillStyle = "#C4C4C4";
+        ctx.font = "16px Roboto";
+        ctx.fillText("Claim", 1200, 890);
+        ctx.fillStyle = "#000000";
+        ctx.font = "300 36px Roboto";
+        ctx.fillText("$" + this.testCoins[2].rewards, 1178, 850);
+      }
     }
   }
 
@@ -239,10 +361,10 @@ class UI {
       this.corner(242, 240, 1160, 330, 20, "white");
       this.corner(242, 614, 1160, 330, 20, "white");
       ctx.fillStyle = "#6AA5FF";
-      ctx.font = "30px Arial";
+      ctx.font = "30px Roboto";
       ctx.fillText("Wallet", 691, 150);
       ctx.fillText("Total Balance", 1190, 150);
-      ctx.font = "25px Arial";
+      ctx.font = "25px Roboto";
       ctx.fillText("My NFTs", 280, 290);
       ctx.fillText("NFT Marketplace", 280, 654);
       setTimeout(() => {
@@ -253,7 +375,24 @@ class UI {
   }
   constructor() {
     this.canvas = document.getElementById("gameCanvas");
-    //markketplace nfts
+
+    //coins
+    this.testCoins = [
+      new Coin("Alpha", 0, 0.5, 2),
+      new Coin("Beta", 10, 0.1, 3),
+      new Coin("Sigma", 10000, 0.02, 4),
+    ];
+    this.testCoins[0].price = 1000;
+    this.testCoins[0].balance = 0.42;
+    this.testCoins[0].rewards = 0;
+    this.testCoins[1].price = 2000;
+    this.testCoins[1].balance = 0.21;
+    this.testCoins[1].rewards = 420;
+    this.testCoins[2].price = 4000;
+    this.testCoins[2].balance = 0.105;
+    this.testCoins[2].rewards = 420;
+
+    //marketplace nfts
     this.testNFT = [
       new NFT("./images/1.jpg", 100, 3),
       new NFT("./images/2.webp", 10670, 3),
