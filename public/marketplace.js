@@ -4,7 +4,7 @@ class Marketplace {
     this.NFTs = [
       new NFT("./images/1.jpg", 2, 0.01),
       new NFT("./images/2.webp", 69, 0.1),
-      new NFT("./images/3.jpgre", 420, 0.3),
+      new NFT("./images/3.jpg", 420, 0.3),
     ];
   }
 
