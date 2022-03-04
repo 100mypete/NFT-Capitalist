@@ -9,6 +9,7 @@ class UI {
 
   startEvents() {
     let self = this;
+    let pages = 6;
     this.canvas.addEventListener("click", function (evt) {
       var mousePos = self.getMousePos(this.canvas, evt);
       for (let i = 0; i < self.buttons.length; i++) {
@@ -75,18 +76,33 @@ class UI {
           case 20:
             console.log(self.buttons[i].name + " was clicked");
             break;
-          case 21: {
-            //nft page updater
-            if (page + 1 <= this.testNFT.length) {
-              page += 1;
-              this.displayNft();
-            }
-            console.log(this.buttons[i].name + " was clicked");
+          case 21:
+            console.log(self.buttons[i].name + " was clicked");
+            break;
+          case 22:
+            console.log(self.buttons[i].name + " was clicked");
+            break;
+          case 23:
+          if(self.page-1 < 0)
+          {
+            console.log(self.buttons[i].name + " was clicked");
             break;
           }
+          self.page-=1;
+          break;
+          case 24:
+          if(self.page+1 >= self.testNFT.length)
+          {
+            console.log(self.buttons[i].name + " was clicked");
+            break;
+          }
+          self.page+=1;
+          break;
         }
       }
-    });
+    })
+    console.log(self.page);
+    this.page = self.page;
   }
 
   copyImageToCanvas(e, x, y, w, h) {
@@ -111,71 +127,60 @@ class UI {
     this.corner(x + 241, y + 470, 93.33, 40, 20, "#6AA5FF");
   }
 
-  displayNft() {
+  displayNft(y) {
     var ctx = this.canvas.getContext("2d");
-    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
     //nft 1
-    if (this.testNFT.length > 1) {
-      this.copyImageToCanvas(this.testNFT[this.page].image, 300, 370, 142, 142);
-      this.corner(280, 350, 333, 182, 20, "#F0F6FF");
-      ctx.font = "normal 18px Roboto";
+
+
+      this.corner(280, 350+y, 333, 182, 20, "#F0F6FF");
+      this.copyImageToCanvas(this.testNFT[this.page].image, 300, 370+y, 142, 142);
+      ctx.font = "normal 18px Arial";
       ctx.fillStyle = "lightgray";
-      ctx.fillText("Price", 482, 393);
-      ctx.fillText("Perks", 482, 451);
+      ctx.fillText("Price", 482, 393+y);
+      ctx.fillText("Perks", 482, 451+y);
       ctx.fillStyle = "black";
-      ctx.fillText("$ " + this.testNFT[this.page].price, 482, 418);
+      ctx.fillText("$ " + this.testNFT[this.page].price, 482, 418+y);
+      ctx.fillText("$ " + this.testNFT[this.page].perks, 482, 477+y);
       ctx.fillStyle = "lightgray";
-    }
+
 
     //nft 2
-    if (this.testNFT.length > 2) {
+
+      this.corner(653, 350+y, 333, 182, 20, "#F0F6FF");
       this.copyImageToCanvas(
-        this.testNFT[this.page + 1].image,
-        673,
-        370,
-        142,
-        142
-      );
-      this.corner(653, 350, 333, 182, 20, "#F0F6FF");
-      ctx.fillText("Price", 855, 393);
-      ctx.fillText("perks", 855, 451);
-      ctx.fillStyle = "black";
-      ctx.fillText("$ " + this.testNFT[this.page + 1].price, 855, 418);
+        this.testNFT[this.page + 1].image,673,370+y,142,142);
+      ctx.font = "normal 18px Arial";
       ctx.fillStyle = "lightgray";
-    }
+      ctx.fillText("Price", 855, 393+y);
+      ctx.fillText("Perks", 855, 451+y);
+      ctx.fillStyle = "black";
+      ctx.fillText("$ " + this.testNFT[this.page + 1].price, 855, 418+y);
+      ctx.fillText("$ " + this.testNFT[this.page+1].perks, 855, 477+y);
+      ctx.fillStyle = "lightgray";
 
     //nft 3
-    if (this.testNFT.length > 3) {
+
+      this.corner(1026, 350+y, 333, 182, 20, "#F0F6FF");
       this.copyImageToCanvas(
         this.testNFT[this.page + 2].image,
         1046,
-        370,
+        370+y,
         142,
         142
       );
-      this.corner(1026, 350, 333, 182, 20, "#F0F6FF");
-      ctx.fillText("Price", 1228, 393);
-      ctx.fillText("perks", 1228, 451);
+      ctx.font = "normal 18px Arial";
+      ctx.fillStyle = "lightgray";
+      ctx.fillText("Price", 1228, 393+y);
+      ctx.fillText("Perks", 1228, 451+y);
       ctx.fillStyle = "black";
-      ctx.fillText("$ " + this.testNFT[this.page + 2].price, 1228, 418);
-    }
+      ctx.fillText("$ " + this.testNFT[this.page + 2].price, 1228, 418+y);
+      ctx.fillText("$ " + this.testNFT[this.page+2].perks, 1228, 477+y);
 
-    //nft 1
-    if (this.testNFT.length > 1) {
-      setTimeout(() => {
-        this.copyImageToCanvas(
-          this.testNFT[this.page].image,
-          300,
-          370,
-          142,
-          142
-        );
-      }, 200);
-    }
   }
 
+
   drawHome() {
+
     var canvas = document.getElementById("gameCanvas");
     var ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -230,6 +235,7 @@ class UI {
         1170,
         590
       );
+
 
       //invest
       ctx.fillText("Invest", 266, 640);
@@ -321,7 +327,12 @@ class UI {
         ctx.fillText("$" + this.testCoins[2].rewards, 1178, 850);
       }
     }
+    ctx.font = "30px Roboto";
+    ctx.fillStyle = "black";
+    ctx.fillText("Value Placeholder", 280, 150);
+    ctx.fillText("Value Placeholder", 880, 150);
   }
+
 
   //draws rectangles with rounded corners
   corner(x, y, w, h, r, color) {
@@ -349,6 +360,7 @@ class UI {
 
   //draws marketplace
   drawMarketPlace() {
+
     var ctx = this.canvas.getContext("2d");
     ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     if (this.canvas.getContext) {
@@ -367,10 +379,20 @@ class UI {
       ctx.font = "25px Roboto";
       ctx.fillText("My NFTs", 280, 290);
       ctx.fillText("NFT Marketplace", 280, 654);
+
+      ctx.font = "30px Roboto";
+      ctx.fillStyle = "black";
+      ctx.fillText("Value Placeholder", 280, 150);
+      ctx.fillText("Value Placeholder", 880, 150);
+
       setTimeout(() => {
-        this.copyImageToCanvas(this.arrow, 1300, 300, 40, 40);
+        this.copyImageToCanvas(this.rightArrow, 1300, 300, 30, 30);
+        this.copyImageToCanvas(this.leftArrow, 1250, 300, 30, 30);
+        this.copyImageToCanvas(this.rightArrow, 1300, 674, 30, 30);
+        this.copyImageToCanvas(this.leftArrow, 1250, 674, 30, 30);
       }, 200);
-      // this.displayNft();
+      this.displayNft(0);
+       this.displayNft(374);
     }
   }
   constructor() {
@@ -420,17 +442,22 @@ class UI {
       new HitBoxes(1065, 710, 93.33, 40, 18, "withdrawSigma1000"),
       new HitBoxes(1174, 710, 93.33, 40, 19, "withdrawSigma10_000"),
       new HitBoxes(1281, 710, 93.33, 40, 20, "withdrawSigma100_000"),
-      new HitBoxes(1300, 300, 40, 40, 21, "scroolThroughMyNFTs"),
+      new HitBoxes(1300, 300, 30, 30, 21, "scrollRThroughMyNFTs"),
+      new HitBoxes(1250, 300, 30, 30, 22, "scrollLThroughMyNFTs"),
+      new HitBoxes(1300, 674, 30, 30, 23, "scrollRThroughNFTMarketplace"),
+      new HitBoxes(1250, 674, 30, 30, 24, "scrollLThroughNFTMarketplace")
     ];
     //coin images instantiation
     this.alpha = new Image(400, 300);
     this.alpha.src = "./images/alpha.png";
-    this.arrow = new Image(400, 300);
-    this.arrow.src = "./images/arrow.png";
+    this.rightArrow = new Image(400, 300);
+    this.rightArrow.src = "./images/right-arrow.png";
+    this.leftArrow = new Image(400, 300);
+    this.leftArrow.src = "./images/left-arrow.png";
     this.beta = new Image(400, 300);
     this.beta.src = "./images/beta.png";
     this.sigma = new Image(400, 300);
-    this.sigma.src = "././images/sigma.png";
+    this.sigma.src = "./images/sigma.png";
     this.page = 0;
     this.drawHome();
     this.startEvents();
