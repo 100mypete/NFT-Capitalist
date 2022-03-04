@@ -6,7 +6,10 @@ class Player {
             window.localStorage.setItem("playerNFTs", JSON.stringify([]));
         }
         this.playerNFTs = JSON.parse(window.localStorage.getItem("playerNFTs"));
-        this.walletBalance = 1000.0;
+        if (window.localStorage.getItem("walletBalance") == null) {
+            window.localStorage.setItem("walletBalance", 1000);
+        }
+        this.walletBalance = window.localStorage.getItem("walletBalance");
         this.perkTotal = 0;
         this.coins = [new Coin("alpha", 0, 0.5, 2), new Coin("beta", 10, 0.1, 3), new Coin("sigma", 10000, 0.02, 4)];
         this.marketplace = new Marketplace();
@@ -34,6 +37,7 @@ class Player {
         window.localStorage.setItem("playerNFTs", JSON.stringify(this.playerNFTs));
         this.perkTotal += nft.APRPerk;
         this.walletBalance -= nft.price;
+        window.localStorage.setItem("walletBalance", this.walletBalance);
     }
 
     checkOwnedNFTs() {
@@ -44,6 +48,7 @@ class Player {
         let coin = this.coins[coinType];
         coin.balance += usd;
         this.walletBalance -= usd;
+        window.localStorage.setItem("walletBalance", this.walletBalance);
         coin.updateNumCoins();
     }
 
@@ -52,6 +57,7 @@ class Player {
         if (usd < coin.balance) {
             coin.balance -= usd;
             this.walletBalance += usd;
+            window.localStorage.setItem("walletBalance", this.walletBalance);
             coin.updateNumCoins();
         }
     }
