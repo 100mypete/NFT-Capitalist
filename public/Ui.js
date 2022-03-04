@@ -15,65 +15,107 @@ class UI {
         switch (self.buttons[i].isWithin(mousePos.x, mousePos.y)) {
           case 1:
             self.drawHome();
-            console.log(self.buttons[i].name + " was clicked");
+            self.coin = true;
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
             break;
           case 2:
             self.drawMarketPlace();
-            console.log(self.buttons[i].name + " was clicked");
+            self.coin = false;
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
             break;
           case 3:
-            console.log(self.buttons[i].name + " was clicked");
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
             break;
           case 4:
-            console.log(self.buttons[i].name + " was clicked");
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
             break;
           case 5:
-            console.log(self.buttons[i].name + " was clicked");
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
             break;
           case 6:
-            console.log(self.buttons[i].name + " was clicked");
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
             break;
           case 7:
-            console.log(self.buttons[i].name + " was clicked");
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
             break;
           case 8:
-            console.log(self.buttons[i].name + " was clicked");
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
             break;
           case 9:
-            console.log(self.buttons[i].name + " was clicked");
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
             break;
           case 10:
-            console.log(self.buttons[i].name + " was clicked");
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
             break;
           case 11:
-            console.log(self.buttons[i].name + " was clicked");
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
             break;
           case 12:
-            console.log(self.buttons[i].name + " was clicked");
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
             break;
           case 13:
-            console.log(self.buttons[i].name + " was clicked");
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
             break;
           case 14:
-            console.log(self.buttons[i].name + " was clicked");
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
             break;
           case 15:
-            console.log(self.buttons[i].name + " was clicked");
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
             break;
           case 16:
-            console.log(self.buttons[i].name + " was clicked");
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
             break;
           case 17:
-            console.log(self.buttons[i].name + " was clicked");
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
             break;
           case 18:
-            console.log(self.buttons[i].name + " was clicked");
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
             break;
           case 19:
-            console.log(self.buttons[i].name + " was clicked");
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
             break;
           case 20:
-            console.log(self.buttons[i].name + " was clicked");
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
             break;
           case 21: {
             //nft page updater
@@ -81,12 +123,36 @@ class UI {
               page += 1;
               this.displayNft();
             }
-            console.log(this.buttons[i].name + " was clicked");
+            console.log(
+              self.buttons[i].id + ": " + this.buttons[i].name + " was clicked"
+            );
+            break;
+          }
+          case 25: {
+            self.player.coins[0].harvestAPR();
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
+            break;
+          }
+          case 26: {
+            self.player.coins[1].harvestAPR();
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
+            break;
+          }
+          case 27: {
+            self.player.coins[2].harvestAPR();
+            console.log(
+              self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
+            );
             break;
           }
         }
       }
     });
+    this.coin = self.coin;
   }
 
   copyImageToCanvas(e, x, y, w, h) {
@@ -189,6 +255,9 @@ class UI {
       this.drawCoinTab(240, 240, 360, 704, 20);
       this.drawCoinTab(640, 240, 360, 704, 20);
       this.drawCoinTab(1040, 240, 360, 704, 20);
+      this.copyImageToCanvas(this.alpha, 240, 220, 400, 300);
+      this.copyImageToCanvas(this.beta, 740, 270, 160, 160);
+      this.copyImageToCanvas(this.sigma, 1040, 220, 400, 300);
 
       //balance
       ctx.font = "30px Roboto";
@@ -198,35 +267,35 @@ class UI {
       //coin name
       ctx.font = "42px Roboto";
       ctx.fillStyle = "#000000";
-      ctx.fillText(this.testCoins[0].name, 366, 500);
-      ctx.fillText(this.testCoins[1].name, 773, 500);
-      ctx.fillText(this.testCoins[2].name, 1160, 500);
+      ctx.fillText(this.player.coins[0].name, 366, 500);
+      ctx.fillText(this.player.coins[1].name, 773, 500);
+      ctx.fillText(this.player.coins[2].name, 1160, 500);
 
       //coin price
       ctx.font = "16px Roboto";
-      ctx.fillText("$" + this.testCoins[0].price, 395, 550);
-      ctx.fillText("$" + this.testCoins[1].price, 795, 550);
-      ctx.fillText("$" + this.testCoins[2].price, 1195, 550);
+      ctx.fillText("$" + this.player.coins[0].price, 395, 550);
+      ctx.fillText("$" + this.player.coins[1].price, 795, 550);
+      ctx.fillText("$" + this.player.coins[2].price, 1195, 550);
 
       //coin apr
-      ctx.fillText("APR: " + this.testCoins[0].apr * 100 + "%", 387, 570);
-      ctx.fillText("APR: " + this.testCoins[1].apr * 100 + "%", 775, 570);
-      ctx.fillText("APR: " + this.testCoins[2].apr * 100 + "%", 1162, 570);
+      ctx.fillText("APR: " + this.player.coins[0].apr * 100 + "%", 387, 570);
+      ctx.fillText("APR: " + this.player.coins[1].apr * 100 + "%", 775, 570);
+      ctx.fillText("APR: " + this.player.coins[2].apr * 100 + "%", 1162, 570);
 
       //coin owned
       ctx.fillStyle = "#6AA5FF";
       ctx.fillText(
-        "Owned: $" + this.testCoins[0].balance * this.testCoins[0].price,
+        "Owned: $" + this.player.coins[0].balance * this.player.coins[0].price,
         370,
         590
       );
       ctx.fillText(
-        "Owned: $" + this.testCoins[1].balance * this.testCoins[1].price,
+        "Owned: $" + this.player.coins[1].balance * this.player.coins[1].price,
         770,
         590
       );
       ctx.fillText(
-        "Owned: $" + this.testCoins[2].balance * this.testCoins[2].price,
+        "Owned: $" + this.player.coins[2].balance * this.player.coins[2].price,
         1170,
         590
       );
@@ -273,14 +342,8 @@ class UI {
       ctx.fillText("$10,000", 1191, 735);
       ctx.fillText("$100,000", 1295, 735);
 
-      setTimeout(() => {
-        this.copyImageToCanvas(this.alpha, 240, 220, 400, 300);
-        this.copyImageToCanvas(this.beta, 740, 270, 160, 160);
-        this.copyImageToCanvas(this.sigma, 1040, 220, 400, 300);
-      }, 200);
-
       //alpha rewards
-      if (this.testCoins[0].rewards == 0) {
+      if (this.player.coins[0].rewards == 0) {
         ctx.fillStyle = "#C4C4C4";
         ctx.font = "16px Roboto";
         ctx.fillText("No rewards", 381, 855);
@@ -290,11 +353,11 @@ class UI {
         ctx.fillText("Claim", 400, 890);
         ctx.fillStyle = "#000000";
         ctx.font = "300 36px Roboto";
-        ctx.fillText("$" + this.testCoins[0].rewards, 378, 850);
+        ctx.fillText("$" + this.player.coins[0].rewards, 378, 850);
       }
 
       //beta rewards
-      if (this.testCoins[1].rewards == 0) {
+      if (this.player.coins[1].rewards == 0) {
         ctx.fillStyle = "#C4C4C4";
         ctx.font = "16px Roboto";
         ctx.fillText("No rewards", 781, 855);
@@ -304,11 +367,11 @@ class UI {
         ctx.fillText("Claim", 800, 890);
         ctx.fillStyle = "#000000";
         ctx.font = "300 36px Roboto";
-        ctx.fillText("$" + this.testCoins[1].rewards, 778, 850);
+        ctx.fillText("$" + this.player.coins[1].rewards, 778, 850);
       }
 
       //sigma rewards
-      if (this.testCoins[2].rewards == 0) {
+      if (this.player.coins[2].rewards == 0) {
         ctx.fillStyle = "#C4C4C4";
         ctx.font = "16px Roboto";
         ctx.fillText("No rewards", 1181, 855);
@@ -318,7 +381,7 @@ class UI {
         ctx.fillText("Claim", 1200, 890);
         ctx.fillStyle = "#000000";
         ctx.font = "300 36px Roboto";
-        ctx.fillText("$" + this.testCoins[2].rewards, 1178, 850);
+        ctx.fillText("$" + this.player.coins[2].rewards, 1178, 850);
       }
     }
   }
@@ -373,24 +436,10 @@ class UI {
       // this.displayNft();
     }
   }
-  constructor() {
+  constructor(player) {
+    this.player = player;
     this.canvas = document.getElementById("gameCanvas");
-
-    //coins
-    this.testCoins = [
-      new Coin("Alpha", 0, 0.5, 2),
-      new Coin("Beta", 10, 0.1, 3),
-      new Coin("Sigma", 10000, 0.02, 4),
-    ];
-    this.testCoins[0].price = 1000;
-    this.testCoins[0].balance = 0.42;
-    this.testCoins[0].rewards = 0;
-    this.testCoins[1].price = 2000;
-    this.testCoins[1].balance = 0.21;
-    this.testCoins[1].rewards = 420;
-    this.testCoins[2].price = 4000;
-    this.testCoins[2].balance = 0.105;
-    this.testCoins[2].rewards = 420;
+    this.coin = true;
 
     //marketplace nfts
     this.testNFT = [
@@ -421,6 +470,9 @@ class UI {
       new HitBoxes(1174, 710, 93.33, 40, 19, "withdrawSigma10_000"),
       new HitBoxes(1281, 710, 93.33, 40, 20, "withdrawSigma100_000"),
       new HitBoxes(1300, 300, 40, 40, 21, "scroolThroughMyNFTs"),
+      new HitBoxes(265, 780, 314, 139, 25, "claimAlpha"),
+      new HitBoxes(665, 780, 314, 139, 26, "claimaBeta"),
+      new HitBoxes(1065, 780, 314, 139, 27, "claimSigma"),
     ];
     //coin images instantiation
     this.alpha = new Image(400, 300);
