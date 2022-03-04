@@ -1,8 +1,11 @@
 class Player {
     
     constructor() {
-        this.playerNFTs = window.localStorage.getItem("playerNFTs");
-        this.playerNFTs = [];
+
+        if (window.localStorage.getItem("playerNFTs") == null) {
+            window.localStorage.setItem("playerNFTs", JSON.stringify([]));
+        }
+        this.playerNFTs = JSON.parse(window.localStorage.getItem("playerNFTs"));
         this.walletBalance = 1000.0;
         this.perkTotal = 0;
         this.coins = [new Coin("alpha", 0, 0.5, 2), new Coin("beta", 10, 0.1, 3), new Coin("sigma", 10000, 0.02, 4)];
@@ -28,6 +31,7 @@ class Player {
     buyNFT(index) {
         let nft = this.marketplace.removeNFT(index);
         this.playerNFTs.push(nft);
+        window.localStorage.setItem("playerNFTs", JSON.stringify(this.playerNFTs));
         this.perkTotal += nft.APRPerk;
         this.walletBalance -= nft.price;
     }
