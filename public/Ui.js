@@ -77,7 +77,7 @@ class UI {
             console.log(self.buttons[i].name + " was clicked");
             break;
           case 21:
-          if(self.myNFTPage+1 >= self.playerNFT.length)
+          if(self.myNFTPage+1 >= self.playerNFT.length-3)
           {
             console.log(self.buttons[i].name + " was clicked");
             break;
@@ -96,7 +96,6 @@ class UI {
           self.myNFTPage-=1;
           self.displayNft(0, self.playerNFT, "playerNFT");
           console.log(self.myNFTPage);
-          break;
             break;
           case 23:
           if(self.marketplacePage == 0)
@@ -105,17 +104,17 @@ class UI {
             break;
           }
           self.marketplacePage-=1;
-          self.displayNft(0, self.marketNFT, "marketNFT");
+          self.displayNft(374, self.marketNFT, "marketNFT");
           console.log(self.marketplacePage);
           break;
           case 24:
-          if(self.marketplacePage >= self.marketNFT.length)
+          if(self.marketplacePage >= self.marketNFT.length-3)
           {
             console.log(self.buttons[i].name + " was clicked");
             break;
           }
           self.marketplacePage+=1;
-          self.displayNft(0, self.marketNFT, "marketNFT");
+          self.displayNft(374, self.marketNFT, "marketNFT");
           console.log(self.marketplacePage);
           break;
         }
@@ -183,7 +182,7 @@ if(name == "marketNFT")
       ctx.fillStyle = "lightgray";
   }
 
-  if(name.length-this.marketplacePage >=2)
+  if(name.length-this.marketplacePage >=3)
   {
     //nft 3
       this.corner(1026, 350+y, 333, 182, 20, "#F0F6FF");
@@ -491,18 +490,20 @@ if(name == "playerNFT")
 
     //marketplace nfts
     this.marketNFT = [
-      new NFT("./images/1.jpg", 100, 3),
-      new NFT("./images/2.webp", 10670, 3),
-      new NFT("./images/3.jpg", 10342230, 3)
+      new NFT("./images/NFT/1.jpg", 100, 3),
+      new NFT("./images/NFT/2.jpg", 10670, 3),
+      new NFT("./images/NFT/3.jpg", 10342230, 3),
+      new NFT("./images/NFT/2.jpg", 10670, 3)
     ];
 
     this.playerNFT = [
-      new NFT("./images/1.jpg", 100, 3),
-      new NFT("./images/2.webp", 10670, 3),
-      new NFT("./images/3.jpg", 10342230, 3),
-      new NFT("./images/3.jpg", 100, 3),
-      new NFT("./images/3.jpg", 10670, 3),
-      new NFT("./images/3.jpg", 10342230, 3)
+      new NFT("./images/NFT/1.jpg", 100, 3),
+      new NFT("./images/NFT/2.jpg", 10670, 3),
+      new NFT("./images/NFT/3.jpg", 10342230, 3),
+      new NFT("./images/NFT/4.jpg", 100, 3),
+      new NFT("./images/NFT/5.png", 10670, 3),
+    new NFT("./images/NFT/3.jpg", 10342230, 3),
+          new NFT("./images/NFT/5.png", 10670, 3)
     ];
     //button hitboxes for home and marketplace
     this.buttons = [
