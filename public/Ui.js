@@ -119,11 +119,11 @@ class UI {
             );
             break;
           case 21:
-            if (self.myNFTPage+1 >= self.playerNFT.length-3) {
+            if (self.myNFTPage + 1 >= self.playerNFT.length - 3) {
               console.log(self.buttons[i].name + " was clicked");
               break;
             }
-            self.myNFTPage+=1;
+            self.myNFTPage += 1;
             self.displayNft(0, self.playerNFT, "playerNFT");
             console.log(self.myNFTPage);
             break;
@@ -132,7 +132,7 @@ class UI {
               console.log(self.buttons[i].name + " was clicked");
               break;
             }
-            self.myNFTPage-=1;
+            self.myNFTPage -= 1;
             self.displayNft(0, self.playerNFT, "playerNFT");
             console.log(self.myNFTPage);
             break;
@@ -141,16 +141,16 @@ class UI {
               console.log(self.buttons[i].name + " was clicked");
               break;
             }
-            self.marketplacePage-=1;
+            self.marketplacePage -= 1;
             self.displayNft(374, self.marketNFT, "marketNFT");
             console.log(self.marketplacePage);
             break;
           case 24:
-            if (self.marketplacePage >= self.marketNFT.length-3) {
+            if (self.marketplacePage >= self.marketNFT.length - 3) {
               console.log(self.buttons[i].name + " was clicked");
               break;
             }
-            self.marketplacePage+=1;
+            self.marketplacePage += 1;
             self.displayNft(374, self.marketNFT, "marketNFT");
             console.log(self.marketplacePage);
             break;
@@ -173,6 +173,7 @@ class UI {
             console.log(
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
+          }
         }
       }
     });
@@ -206,109 +207,142 @@ class UI {
     var ctx = this.canvas.getContext("2d");
     //nft 1
 
-if(name == "marketNFT")
-{
-  if(name.length-this.marketplacePage >=1)
-  {
-    this.corner(280, 350+y, 333, 182, 20, "#F0F6FF");
-    this.copyImageToCanvas(array[this.marketplacePage].image, 300, 370+y, 142, 142);
-    ctx.font = "normal 18px Arial";
-    ctx.fillStyle = "lightgray";
-    ctx.fillText("Price", 482, 393+y);
-    ctx.fillText("Perks", 482, 451+y);
-    ctx.fillStyle = "black";
-    ctx.fillText("$ " + array[this.marketplacePage].price, 482, 418+y);
-    ctx.fillText("$ " + array[this.marketplacePage].perks, 482, 477+y);
-    ctx.fillStyle = "lightgray";
+    if (name == "marketNFT") {
+      if (name.length - this.marketplacePage >= 1) {
+        this.corner(280, 350 + y, 333, 182, 20, "#F0F6FF");
+        this.copyImageToCanvas(
+          array[this.marketplacePage].image,
+          300,
+          370 + y,
+          142,
+          142
+        );
+        ctx.font = "normal 18px Arial";
+        ctx.fillStyle = "lightgray";
+        ctx.fillText("Price", 482, 393 + y);
+        ctx.fillText("Perks", 482, 451 + y);
+        ctx.fillStyle = "black";
+        ctx.fillText("$ " + array[this.marketplacePage].price, 482, 418 + y);
+        ctx.fillText("$ " + array[this.marketplacePage].perks, 482, 477 + y);
+        ctx.fillStyle = "lightgray";
+      }
+
+      if (name.length - this.marketplacePage >= 2) {
+        this.corner(653, 350 + y, 333, 182, 20, "#F0F6FF");
+        this.copyImageToCanvas(
+          array[this.marketplacePage + 1].image,
+          673,
+          370 + y,
+          142,
+          142
+        );
+        ctx.font = "normal 18px Arial";
+        ctx.fillStyle = "lightgray";
+        ctx.fillText("Price", 855, 393 + y);
+        ctx.fillText("Perks", 855, 451 + y);
+        ctx.fillStyle = "black";
+        ctx.fillText(
+          "$ " + array[this.marketplacePage + 1].price,
+          855,
+          418 + y
+        );
+        ctx.fillText(
+          "$ " + array[this.marketplacePage + 1].perks,
+          855,
+          477 + y
+        );
+        ctx.fillStyle = "lightgray";
+      }
+
+      if (name.length - this.marketplacePage >= 3) {
+        //nft 3
+        this.corner(1026, 350 + y, 333, 182, 20, "#F0F6FF");
+        this.copyImageToCanvas(
+          array[this.marketplacePage + 2].image,
+          1046,
+          370 + y,
+          142,
+          142
+        );
+        ctx.font = "normal 18px Arial";
+        ctx.fillStyle = "lightgray";
+        ctx.fillText("Price", 1228, 393 + y);
+        ctx.fillText("Perks", 1228, 451 + y);
+        ctx.fillStyle = "black";
+        ctx.fillText(
+          "$ " + array[this.marketplacePage + 2].price,
+          1228,
+          418 + y
+        );
+        ctx.fillText(
+          "$ " + array[this.marketplacePage + 2].perks,
+          1228,
+          477 + y
+        );
+      }
+    }
+
+    if (name == "playerNFT") {
+      if (name.length - this.myNFTPage >= 1) {
+        this.corner(280, 350 + y, 333, 182, 20, "#F0F6FF");
+        this.copyImageToCanvas(
+          array[this.myNFTPage].image,
+          300,
+          370 + y,
+          142,
+          142
+        );
+        ctx.font = "normal 18px Arial";
+        ctx.fillStyle = "lightgray";
+        ctx.fillText("Price", 482, 393 + y);
+        ctx.fillText("Perks", 482, 451 + y);
+        ctx.fillStyle = "black";
+        ctx.fillText("$ " + array[this.myNFTPage].price, 482, 418 + y);
+        ctx.fillText("$ " + array[this.myNFTPage].perks, 482, 477 + y);
+        ctx.fillStyle = "lightgray";
+      }
+
+      if (name.length - this.myNFTPage >= 2) {
+        this.corner(653, 350 + y, 333, 182, 20, "#F0F6FF");
+        this.copyImageToCanvas(
+          array[this.myNFTPage + 1].image,
+          673,
+          370 + y,
+          142,
+          142
+        );
+        ctx.font = "normal 18px Arial";
+        ctx.fillStyle = "lightgray";
+        ctx.fillText("Price", 855, 393 + y);
+        ctx.fillText("Perks", 855, 451 + y);
+        ctx.fillStyle = "black";
+        ctx.fillText("$ " + array[this.myNFTPage + 1].price, 855, 418 + y);
+        ctx.fillText("$ " + array[this.myNFTPage + 1].perks, 855, 477 + y);
+        ctx.fillStyle = "lightgray";
+      }
+
+      if (name.length - this.myNFTPage >= 3) {
+        //nft 3
+        this.corner(1026, 350 + y, 333, 182, 20, "#F0F6FF");
+        this.copyImageToCanvas(
+          array[this.myNFTPage + 2].image,
+          1046,
+          370 + y,
+          142,
+          142
+        );
+        ctx.font = "normal 18px Arial";
+        ctx.fillStyle = "lightgray";
+        ctx.fillText("Price", 1228, 393 + y);
+        ctx.fillText("Perks", 1228, 451 + y);
+        ctx.fillStyle = "black";
+        ctx.fillText("$ " + array[this.myNFTPage + 2].price, 1228, 418 + y);
+        ctx.fillText("$ " + array[this.myNFTPage + 2].perks, 1228, 477 + y);
+      }
+    }
   }
-
-  if(name.length-this.marketplacePage >=2)
-  {
-      this.corner(653, 350+y, 333, 182, 20, "#F0F6FF");
-      this.copyImageToCanvas(
-        array[this.marketplacePage + 1].image,673,370+y,142,142);
-      ctx.font = "normal 18px Arial";
-      ctx.fillStyle = "lightgray";
-      ctx.fillText("Price", 855, 393+y);
-      ctx.fillText("Perks", 855, 451+y);
-      ctx.fillStyle = "black";
-      ctx.fillText("$ " + array[this.marketplacePage + 1].price, 855, 418+y);
-      ctx.fillText("$ " + array[this.marketplacePage+1].perks, 855, 477+y);
-      ctx.fillStyle = "lightgray";
-  }
-
-  if(name.length-this.marketplacePage >=3)
-  {
-    //nft 3
-      this.corner(1026, 350+y, 333, 182, 20, "#F0F6FF");
-      this.copyImageToCanvas(
-      array[this.marketplacePage + 2].image,1046,370+y,142,142);
-      ctx.font = "normal 18px Arial";
-      ctx.fillStyle = "lightgray";
-      ctx.fillText("Price", 1228, 393+y);
-      ctx.fillText("Perks", 1228, 451+y);
-      ctx.fillStyle = "black";
-      ctx.fillText("$ " + array[this.marketplacePage + 2].price, 1228, 418+y);
-      ctx.fillText("$ " + array[this.marketplacePage+2].perks, 1228, 477+y);
-  }
-
-}
-
-if(name == "playerNFT")
-{
-  if(name.length-this.myNFTPage >=1)
-  {
-    this.corner(280, 350+y, 333, 182, 20, "#F0F6FF");
-    this.copyImageToCanvas(array[this.myNFTPage].image, 300, 370+y, 142, 142);
-    ctx.font = "normal 18px Arial";
-    ctx.fillStyle = "lightgray";
-    ctx.fillText("Price", 482, 393+y);
-    ctx.fillText("Perks", 482, 451+y);
-    ctx.fillStyle = "black";
-    ctx.fillText("$ " + array[this.myNFTPage].price, 482, 418+y);
-    ctx.fillText("$ " + array[this.myNFTPage].perks, 482, 477+y);
-    ctx.fillStyle = "lightgray";
-  }
-
-  if(name.length-this.myNFTPage >=2)
-  {
-      this.corner(653, 350+y, 333, 182, 20, "#F0F6FF");
-      this.copyImageToCanvas(
-        array[this.myNFTPage+1].image,673,370+y,142,142);
-      ctx.font = "normal 18px Arial";
-      ctx.fillStyle = "lightgray";
-      ctx.fillText("Price", 855, 393+y);
-      ctx.fillText("Perks", 855, 451+y);
-      ctx.fillStyle = "black";
-      ctx.fillText("$ " + array[this.myNFTPage + 1].price, 855, 418+y);
-      ctx.fillText("$ " + array[this.myNFTPage+1].perks, 855, 477+y);
-      ctx.fillStyle = "lightgray";
-  }
-
-  if(name.length-this.myNFTPage >=3)
-  {
-    //nft 3
-      this.corner(1026, 350+y, 333, 182, 20, "#F0F6FF");
-      this.copyImageToCanvas(
-      array[this.myNFTPage+2].image,1046,370+y,142,142);
-      ctx.font = "normal 18px Arial";
-      ctx.fillStyle = "lightgray";
-      ctx.fillText("Price", 1228, 393+y);
-      ctx.fillText("Perks", 1228, 451+y);
-      ctx.fillStyle = "black";
-      ctx.fillText("$ " + array[this.myNFTPage + 2].price, 1228, 418+y);
-      ctx.fillText("$ " + array[this.myNFTPage+2].perks, 1228, 477+y);
-  }
-
-}
-
-
-
-}
-
 
   drawHome() {
-
     var canvas = document.getElementById("gameCanvas");
     var ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -366,7 +400,6 @@ if(name == "playerNFT")
         1170,
         590
       );
-
 
       //invest
       ctx.fillText("Invest", 266, 640);
@@ -458,7 +491,6 @@ if(name == "playerNFT")
     ctx.fillText("Value Placeholder", 880, 150);
   }
 
-
   //draws rectangles with rounded corners
   corner(x, y, w, h, r, color) {
     var ctx = this.canvas.getContext("2d");
@@ -485,7 +517,6 @@ if(name == "playerNFT")
 
   //draws marketplace
   drawMarketPlace() {
-
     var ctx = this.canvas.getContext("2d");
     ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     if (this.canvas.getContext) {
@@ -516,9 +547,8 @@ if(name == "playerNFT")
         this.copyImageToCanvas(this.rightArrow, 1300, 674, 30, 30);
         this.copyImageToCanvas(this.leftArrow, 1250, 674, 30, 30);
       }, 200);
-       this.displayNft(0, this.playerNFT, "playerNFT");
+      this.displayNft(0, this.playerNFT, "playerNFT");
       this.displayNft(374, this.marketNFT, "marketNFT");
-
     }
   }
   constructor(player) {
@@ -531,7 +561,7 @@ if(name == "playerNFT")
       new NFT("./images/NFT/1.jpg", 100, 3),
       new NFT("./images/NFT/2.jpg", 10670, 3),
       new NFT("./images/NFT/3.jpg", 10342230, 3),
-      new NFT("./images/NFT/2.jpg", 10670, 3)
+      new NFT("./images/NFT/2.jpg", 10670, 3),
     ];
 
     this.playerNFT = [
@@ -540,8 +570,8 @@ if(name == "playerNFT")
       new NFT("./images/NFT/3.jpg", 10342230, 3),
       new NFT("./images/NFT/4.jpg", 100, 3),
       new NFT("./images/NFT/5.png", 10670, 3),
-    new NFT("./images/NFT/3.jpg", 10342230, 3),
-          new NFT("./images/NFT/5.png", 10670, 3)
+      new NFT("./images/NFT/3.jpg", 10342230, 3),
+      new NFT("./images/NFT/5.png", 10670, 3),
     ];
     //button hitboxes for home and marketplace
     this.buttons = [
@@ -571,7 +601,7 @@ if(name == "playerNFT")
       new HitBoxes(1300, 300, 30, 30, 21, "scrollRThroughMyNFTs"),
       new HitBoxes(1250, 300, 30, 30, 22, "scrollLThroughMyNFTs"),
       new HitBoxes(1300, 674, 30, 30, 24, "scrollRThroughNFTMarketplace"),
-      new HitBoxes(1250, 674, 30, 30, 23, "scrollLThroughNFTMarketplace")
+      new HitBoxes(1250, 674, 30, 30, 23, "scrollLThroughNFTMarketplace"),
     ];
     //coin images instantiation
     this.alpha = new Image(400, 300);
