@@ -17,5 +17,28 @@
 <script src="./player.js"></script>
 <script src="./coin.js"></script>
 <script src="./marketplace.js"></script>
+<script>
+  let player = new Player();
+  let ui = new UI(player);
+  player.coins.forEach(coin => {
+    coin.newTargetPrice();
+  });
+  setInterval(() => {
+    if (ui.coin == true) {
+      ui.drawHome();
+    }
+  }, 10);
+  setInterval(() => {
+    player.coins.forEach(coin => {
+      coin.updatePrice();
+      coin.updateAPR();
+    });
+  }, 1000);
+  setInterval(() => {
+    player.coins.forEach(coin => {
+      coin.newTargetPrice();
+    });
+  }, 15000);
+</script>
 
 </html>
