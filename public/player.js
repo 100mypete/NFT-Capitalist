@@ -7,7 +7,7 @@ class Player {
     this.coins = [
       new Coin("Alpha", 0, 0.5, 2),
       new Coin("Beta", 10, 0.1, 3),
-      new Coin("Sigma", 10000, 0.02, 4),
+      new Coin("Sigma", 100, 0.02, 4),
     ];
     this.marketplace = new Marketplace();
   }
@@ -45,18 +45,25 @@ class Player {
   }
 
   invest(usd, coinType) {
-    let coin = this.coins[coinType];
-    coin.balance += usd;
-    this.walletBalance -= usd;
-    coin.updateNumCoins();
+    if (usd <= this.walletBalance) {
+      let coin = this.coins[coinType];
+      coin.balance += usd;
+      this.walletBalance -= usd;
+      coin.updateNumCoins();
+    } else {
+      console.log("Insufficient wallet balance");
+    }
   }
 
   withdraw(usd, coinType) {
     let coin = this.coins[coinType];
-    if (usd < coin.balance) {
+    if (usd <= coin.balance) {
       coin.balance -= usd;
       this.walletBalance += usd;
       coin.updateNumCoins();
+      coin.harvestAPR();
+    } else {
+      console.log("Insufficient coin balance");
     }
   }
 
