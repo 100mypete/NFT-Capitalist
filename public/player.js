@@ -11,8 +11,15 @@ class Player {
         }
         this.walletBalance = window.localStorage.getItem("walletBalance");
         this.perkTotal = 0;
-        this.coins = [new Coin("alpha", 0, 0.5, 2), new Coin("beta", 10, 0.1, 3), new Coin("sigma", 10000, 0.02, 4)];
-        this.marketplace = new Marketplace();
+        this.perkTotal = this.checkPerks();
+        if (window.localStorage.getItem("coins") == null) {
+            window.localStorage.setItem("coins", JSON.stringify([new Coin("alpha", 0, 0.5, 2), new Coin("beta", 10, 0.1, 3), new Coin("sigma", 10000, 0.02, 4)]));
+        }
+        this.coins = JSON.parse(window.localStorage.getItem("coins"));
+        if (window.localStorage.getItem("marketplace") == null) {
+            window.localStorage.setItem("marketplace", JSON.stringify(new Marketplace()));
+        }
+        this.marketplace = JSON.parse(window.localStorage.getItem("marketplace"));
     }
 
     getTotalBalance() {
@@ -33,6 +40,7 @@ class Player {
 
     buyNFT(index) {
         let nft = this.marketplace.removeNFT(index);
+
         this.playerNFTs.push(nft);
         window.localStorage.setItem("playerNFTs", JSON.stringify(this.playerNFTs));
         this.perkTotal += nft.APRPerk;
@@ -50,6 +58,7 @@ class Player {
         this.walletBalance -= usd;
         window.localStorage.setItem("walletBalance", this.walletBalance);
         coin.updateNumCoins();
+        window.localStorage.setItem("coins", this.coins);
     }
 
     withdraw(usd, coinType) {
@@ -59,6 +68,7 @@ class Player {
             this.walletBalance += usd;
             window.localStorage.setItem("walletBalance", this.walletBalance);
             coin.updateNumCoins();
+            window.localStorage.setItem("coins", this.coins);
         }
     }
 
