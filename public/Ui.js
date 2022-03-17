@@ -29,91 +29,109 @@ class UI {
             );
             break;
           case 3:
+            self.player.invest(1000, 0);
             console.log(
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
             break;
           case 4:
+            self.player.invest(10000, 0);
             console.log(
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
             break;
           case 5:
+            self.player.invest(100000, 0);
             console.log(
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
             break;
           case 6:
+            self.player.invest(1000, 1);
             console.log(
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
             break;
           case 7:
+            self.player.invest(10000, 1);
             console.log(
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
             break;
           case 8:
+            self.player.invest(100000, 1);
             console.log(
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
             break;
           case 9:
+            self.player.invest(1000, 2);
             console.log(
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
             break;
           case 10:
+            self.player.invest(10000, 2);
             console.log(
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
             break;
           case 11:
+            self.player.invest(100000, 2);
             console.log(
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
             break;
           case 12:
+            self.player.withdraw(1000, 0);
             console.log(
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
             break;
           case 13:
+            self.player.withdraw(10000, 0);
             console.log(
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
             break;
           case 14:
+            self.player.withdraw(100000, 0);
             console.log(
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
             break;
           case 15:
+            self.player.withdraw(1000, 1);
             console.log(
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
             break;
           case 16:
+            self.player.withdraw(10000, 1);
             console.log(
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
             break;
           case 17:
+            self.player.withdraw(100000, 1);
             console.log(
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
             break;
           case 18:
+            self.player.withdraw(1000, 2);
             console.log(
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
             break;
           case 19:
+            self.player.withdraw(10000, 2);
             console.log(
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
             break;
           case 20:
+            self.player.withdraw(100000, 2);
             console.log(
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
@@ -374,29 +392,37 @@ class UI {
 
       //coin price
       ctx.font = "16px Roboto";
-      ctx.fillText("$" + this.player.coins[0].price, 395, 550);
-      ctx.fillText("$" + this.player.coins[1].price, 795, 550);
-      ctx.fillText("$" + this.player.coins[2].price, 1195, 550);
+      ctx.fillText("$" + this.round(this.player.coins[0].price), 395, 550);
+      ctx.fillText("$" + this.round(this.player.coins[1].price), 795, 550);
+      ctx.fillText("$" + this.round(this.player.coins[2].price), 1195, 550);
 
       //coin apr
-      ctx.fillText("APR: " + this.player.coins[0].apr * 100 + "%", 387, 570);
-      ctx.fillText("APR: " + this.player.coins[1].apr * 100 + "%", 775, 570);
+      ctx.fillText(
+        "APR: " + this.round(this.player.coins[0].apr * 100) + "%",
+        387,
+        570
+      );
+      ctx.fillText(
+        "APR: " + this.round(this.player.coins[1].apr * 100) + "%",
+        775,
+        570
+      );
       ctx.fillText("APR: " + this.player.coins[2].apr * 100 + "%", 1162, 570);
 
       //coin owned
       ctx.fillStyle = "#6AA5FF";
       ctx.fillText(
-        "Owned: $" + this.player.coins[0].balance * this.player.coins[0].price,
+        "Owned: $" + this.round(this.player.coins[0].balance),
         370,
         590
       );
       ctx.fillText(
-        "Owned: $" + this.player.coins[1].balance * this.player.coins[1].price,
+        "Owned: $" + this.round(this.player.coins[1].balance),
         770,
         590
       );
       ctx.fillText(
-        "Owned: $" + this.player.coins[2].balance * this.player.coins[2].price,
+        "Owned: $" + this.round(this.player.coins[2].balance),
         1170,
         590
       );
@@ -454,7 +480,7 @@ class UI {
         ctx.fillText("Claim", 400, 890);
         ctx.fillStyle = "#000000";
         ctx.font = "300 36px Roboto";
-        ctx.fillText("$" + this.player.coins[0].rewards, 378, 850);
+        ctx.fillText("$" + this.round(this.player.coins[0].rewards), 378, 850);
       }
 
       //beta rewards
@@ -468,7 +494,7 @@ class UI {
         ctx.fillText("Claim", 800, 890);
         ctx.fillStyle = "#000000";
         ctx.font = "300 36px Roboto";
-        ctx.fillText("$" + this.player.coins[1].rewards, 778, 850);
+        ctx.fillText("$" + this.round(this.player.coins[1].rewards), 778, 850);
       }
 
       //sigma rewards
@@ -482,13 +508,13 @@ class UI {
         ctx.fillText("Claim", 1200, 890);
         ctx.fillStyle = "#000000";
         ctx.font = "300 36px Roboto";
-        ctx.fillText("$" + this.player.coins[2].rewards, 1178, 850);
+        ctx.fillText("$" + this.round(this.player.coins[2].rewards), 1178, 850);
       }
     }
     ctx.font = "30px Roboto";
     ctx.fillStyle = "black";
-    ctx.fillText("Value Placeholder", 280, 150);
-    ctx.fillText("Value Placeholder", 880, 150);
+    ctx.fillText("$" + this.round(this.player.walletBalance), 280, 150);
+    ctx.fillText("$" + this.round(this.player.getTotalBalance()), 880, 150);
   }
 
   //draws rectangles with rounded corners
@@ -551,6 +577,11 @@ class UI {
       this.displayNft(374, this.marketNFT, "marketNFT");
     }
   }
+
+  round(num) {
+    return Number(Math.round(num + "e2") + "e-2");
+  }
+
   constructor(player) {
     this.player = player;
     this.canvas = document.getElementById("gameCanvas");
