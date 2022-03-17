@@ -33,6 +33,7 @@
       coin.updatePrice();
       coin.updateAPR();
     });
+    window.localStorage.setItem("coins", player.coins);
   }, 1000);
   setInterval(() => {
     player.coins.forEach(coin => {
