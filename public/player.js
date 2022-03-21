@@ -8,9 +8,7 @@ class Player {
       window.localStorage.setItem("walletBalance", 1000);
     }
     this.walletBalance = window.localStorage.getItem("walletBalance");
-    this.perkTotal = 0;
     this.perkTotal = this.checkPerks();
-
 
     //coin stuff
     this.coins = [new Coin("alpha", 0, 0.5, 2), new Coin("beta", 10, 0.1, 3), new Coin("sigma", 10000, 0.02, 4)];
@@ -101,19 +99,16 @@ class Player {
   getBetaBalance() {
     return this.coins[1].balance;
   }
-  
+
   getSigmaBalance() {
     return this.coins[2].balance;
   }
 
   buyNFT(index) {
-      let nft = this.marketplace.removeNFT(index);
-
-      this.playerNFTs.push(nft);
-      window.localStorage.setItem("playerNFTs", JSON.stringify(this.playerNFTs));
-      this.perkTotal += nft.APRPerk;
-      this.walletBalance -= nft.price;
-      window.localStorage.setItem("walletBalance", this.walletBalance);
+    let nft = this.marketplace.removeNFT(index);
+    this.playerNFTs.push(nft);
+    this.perkTotal += nft.APRPerk;
+    this.walletBalance -= nft.price;
   }
 
   checkOwnedNFTs() {
@@ -147,7 +142,7 @@ class Player {
 
   withdraw(usd, coinType) {
     let coin = this.coins[coinType];
-    if (usd <= coin.balance) {
+    if (usd < coin.balance) {
       coin.balance -= usd;
       switch (coinType) {
         case 0:
