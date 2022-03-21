@@ -176,8 +176,7 @@ class UI {
             console.log(
               "NFT Buy Button " + (self.marketplacePage + 1) + " clicked!"
             );
-            if(self.marketNFT[0].price > player.walletBalance)
-              break;
+            if (self.marketNFT[0].price > player.walletBalance) break;
             player.walletBalance -= self.marketNFT[0].price;
             self.updateBalances();
             self.playerNFT.push(self.marketNFT.splice(0, 1)[0]);
@@ -187,8 +186,7 @@ class UI {
             console.log(
               "NFT Buy Button " + (self.marketplacePage + 2) + " clicked!"
             );
-            if(self.marketNFT[1].price > player.walletBalance)
-              break;
+            if (self.marketNFT[1].price > player.walletBalance) break;
             player.walletBalance -= self.marketNFT[1].price;
             self.updateBalances();
             self.playerNFT.push(self.marketNFT.splice(1, 1)[0]);
@@ -198,8 +196,7 @@ class UI {
             console.log(
               "NFT Buy Button " + (self.marketplacePage + 3) + " clicked!"
             );
-            if(self.marketNFT[2].price > player.walletBalance)
-              break;
+            if (self.marketNFT[2].price > player.walletBalance) break;
             player.walletBalance -= self.marketNFT[2].price;
             self.updateBalances();
             self.playerNFT.push(self.marketNFT.splice(2, 1)[0]);
@@ -225,7 +222,6 @@ class UI {
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
           }
-
         }
       }
     });
@@ -255,12 +251,12 @@ class UI {
     this.corner(x + 241, y + 470, 93.33, 40, 20, "#6AA5FF");
   }
 
-  updateBalances(){
+  updateBalances() {
     var ctx = this.canvas.getContext("2d");
     ctx.font = "30px Roboto";
     ctx.fillStyle = "black";
-    ctx.fillText(player.walletBalance, 280, 150);
-    ctx.fillText(player.getTotalBalance(), 880, 150);
+    ctx.fillText(this.round(player.walletBalance), 280, 150);
+    ctx.fillText(this.round(player.getTotalBalance()), 880, 150);
   }
 
   displayNft(y, array, name) {
@@ -567,7 +563,6 @@ class UI {
     this.updateBalances();
   }
 
-
   //draws rectangles with rounded corners
   corner(x, y, w, h, r, color) {
     var ctx = this.canvas.getContext("2d");
@@ -613,10 +608,7 @@ class UI {
       ctx.fillText("My NFTs", 280, 290);
       ctx.fillText("NFT Marketplace", 280, 654);
 
-      ctx.font = "30px Roboto";
-      ctx.fillStyle = "black";
-      ctx.fillText("Value Placeholder", 280, 150);
-      ctx.fillText("Value Placeholder", 880, 150);
+      this.updateBalances();
 
       setTimeout(() => {
         this.copyImageToCanvas(this.rightArrow, 1300, 300, 30, 30);

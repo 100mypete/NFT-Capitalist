@@ -18,23 +18,36 @@
 <script src="./coin.js"></script>
 <script src="./marketplace.js"></script>
 <script>
+  //initialize stuff
   let player = new Player();
   let ui = new UI(player);
   player.coins.forEach(coin => {
     coin.newTargetPrice();
   });
+
+  //redraw ui every 10ms
   setInterval(() => {
     if (ui.coin == true) {
       ui.drawHome();
+    } else {
+      ui.drawMarketPlace();
     }
   }, 10);
+
+  //update and save every 1s
   setInterval(() => {
+    window.localStorage.setItem("walletBalance", player.walletBalance);
     player.coins.forEach(coin => {
       coin.updatePrice();
       coin.updateAPR();
+      window.localStorage.setItem(coin.name + "Balance", coin.balance);
+      window.localStorage.setItem(coin.name + "NumCoins", coin.numCoins);
+      window.localStorage.setItem(coin.name + "Price", coin.price);
+      window.localStorage.setItem(coin.name + "Rewards", coin.rewards);
     });
-    window.localStorage.setItem("coins", player.coins);
   }, 1000);
+
+  //update target price every 15s
   setInterval(() => {
     player.coins.forEach(coin => {
       coin.newTargetPrice();
