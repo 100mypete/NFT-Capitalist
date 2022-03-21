@@ -163,7 +163,7 @@ class UI {
             self.displayNft(374, self.marketNFT, "marketNFT");
             console.log(self.marketplacePage);
             break;
-          case 24:
+          case 24: // scroll right through nfts
             if (self.marketplacePage >= self.marketNFT.length - 3) {
               console.log(self.buttons[i].name + " was clicked");
               break;
@@ -172,26 +172,60 @@ class UI {
             self.displayNft(374, self.marketNFT, "marketNFT");
             console.log(self.marketplacePage);
             break;
+          case 28:
+            console.log(
+              "NFT Buy Button " + (self.marketplacePage + 1) + " clicked!"
+            );
+            if(self.marketNFT[0].price > player.walletBalance)
+              break;
+            player.walletBalance -= self.marketNFT[0].price;
+            self.updateBalances();
+            self.playerNFT.push(self.marketNFT.splice(0, 1)[0]);
+            self.drawMarketPlace();
+            break;
+          case 29:
+            console.log(
+              "NFT Buy Button " + (self.marketplacePage + 2) + " clicked!"
+            );
+            if(self.marketNFT[1].price > player.walletBalance)
+              break;
+            player.walletBalance -= self.marketNFT[1].price;
+            self.updateBalances();
+            self.playerNFT.push(self.marketNFT.splice(1, 1)[0]);
+            self.drawMarketPlace();
+            break;
+          case 30:
+            console.log(
+              "NFT Buy Button " + (self.marketplacePage + 3) + " clicked!"
+            );
+            if(self.marketNFT[2].price > player.walletBalance)
+              break;
+            player.walletBalance -= self.marketNFT[2].price;
+            self.updateBalances();
+            self.playerNFT.push(self.marketNFT.splice(2, 1)[0]);
+            self.drawMarketPlace();
+            break;
           case 25: {
-            self.player.coins[0].harvestAPR();
+            player.coins[0].harvestAPR();
             console.log(
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
             break;
           }
           case 26: {
-            self.player.coins[1].harvestAPR();
+            player.coins[1].harvestAPR();
             console.log(
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
             break;
           }
           case 27: {
-            self.player.coins[2].harvestAPR();
+            player.coins[2].harvestAPR();
             console.log(
               self.buttons[i].id + ": " + self.buttons[i].name + " was clicked"
             );
           }
+
         }
       }
     });
@@ -221,6 +255,14 @@ class UI {
     this.corner(x + 241, y + 470, 93.33, 40, 20, "#6AA5FF");
   }
 
+  updateBalances(){
+    var ctx = this.canvas.getContext("2d");
+    ctx.font = "30px Roboto";
+    ctx.fillStyle = "black";
+    ctx.fillText(player.walletBalance, 280, 150);
+    ctx.fillText(player.getTotalBalance(), 880, 150);
+  }
+
   displayNft(y, array, name) {
     var ctx = this.canvas.getContext("2d");
     //nft 1
@@ -228,6 +270,7 @@ class UI {
     if (name == "marketNFT") {
       if (name.length - this.marketplacePage >= 1) {
         this.corner(280, 350 + y, 333, 182, 20, "#F0F6FF");
+
         this.copyImageToCanvas(
           array[this.marketplacePage].image,
           300,
@@ -242,6 +285,9 @@ class UI {
         ctx.fillStyle = "black";
         ctx.fillText("$ " + array[this.marketplacePage].price, 482, 418 + y);
         ctx.fillText("$ " + array[this.marketplacePage].perks, 482, 477 + y);
+        this.corner(325, 500 + y, 100, 40, 20, "#87CEFA"); //EDITING HERE!!
+        ctx.fillStyle = "white";
+        ctx.fillText("BUY", 355, 525 + y);
         ctx.fillStyle = "lightgray";
       }
 
@@ -269,6 +315,9 @@ class UI {
           855,
           477 + y
         );
+        this.corner(698, 500 + y, 100, 40, 20, "#87CEFA"); //EDITING HERE!!
+        ctx.fillStyle = "white";
+        ctx.fillText("BUY", 730, 526 + y);
         ctx.fillStyle = "lightgray";
       }
 
@@ -297,6 +346,10 @@ class UI {
           1228,
           477 + y
         );
+        this.corner(1071, 500 + y, 100, 40, 20, "#87CEFA"); //EDITING HERE!!
+        ctx.fillStyle = "white";
+        ctx.fillText("BUY", 1102, 526 + y);
+        ctx.fillStyle = "black";
       }
     }
 
@@ -511,11 +564,9 @@ class UI {
         ctx.fillText("$" + this.round(this.player.coins[2].rewards), 1178, 850);
       }
     }
-    ctx.font = "30px Roboto";
-    ctx.fillStyle = "black";
-    ctx.fillText("$" + this.round(this.player.walletBalance), 280, 150);
-    ctx.fillText("$" + this.round(this.player.getTotalBalance()), 880, 150);
+    this.updateBalances();
   }
+
 
   //draws rectangles with rounded corners
   corner(x, y, w, h, r, color) {
@@ -609,6 +660,7 @@ class UI {
       new HitBoxes(80, 120, 80, 392, 1, "home"),
       new HitBoxes(80, 512, 80, 392, 2, "market"),
       new HitBoxes(265, 646, 93.33, 40, 3, "investAlpha1000"),
+      //new HitBoxes(300, 646, 93.33, 40, 3.5, "testBuy");
       new HitBoxes(374, 646, 93.33, 40, 4, "investAlpha10_000"),
       new HitBoxes(481, 646, 93.33, 40, 5, "investAlpha100_000"),
       new HitBoxes(665, 646, 93.33, 40, 6, "investBeta1000"),
@@ -633,6 +685,10 @@ class UI {
       new HitBoxes(1250, 300, 30, 30, 22, "scrollLThroughMyNFTs"),
       new HitBoxes(1300, 674, 30, 30, 24, "scrollRThroughNFTMarketplace"),
       new HitBoxes(1250, 674, 30, 30, 23, "scrollLThroughNFTMarketplace"),
+      //this.corner(325, 500 + y, 100, 40, 20, "#87CEFA"); //EDITING HERE!!
+      new HitBoxes(325, 880, 100, 40, 28, "buy1"),
+      new HitBoxes(700, 880, 100, 40, 29, "buy2"),
+      new HitBoxes(1070, 880, 100, 40, 30, "buy3"),
     ];
     //coin images instantiation
     this.alpha = new Image(400, 300);
